@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 /**
  * Created by Gaurav Badarkhe on 3/22/18.
  */
@@ -16,10 +18,16 @@ import android.widget.EditText;
 public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticViewHolder> {
 
     int totalItems;
+    ArrayList<String> resultList;
     Context context;
 
     public MatrixAdapter(int totalItems, Context context) {
         this.totalItems = totalItems;
+        this.context = context;
+    }
+
+    public MatrixAdapter(ArrayList<String> resultList, Context context) {
+        this.resultList = resultList;
         this.context = context;
     }
 
@@ -32,7 +40,13 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
 
     @Override
     public void onBindViewHolder(MarticViewHolder holder, final int position) {
-        holder.edt_cell.setText(position + "");
+
+        if (resultList != null) {
+            holder.edt_cell.setText(resultList.get(position));
+        } else {
+            holder.edt_cell.setText(position + "");
+        }
+
         holder.edt_cell.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -58,7 +72,7 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
 
     @Override
     public int getItemCount() {
-        return totalItems;
+        return resultList != null ? resultList.size() : totalItems;
     }
 
     public static class MarticViewHolder extends RecyclerView.ViewHolder {

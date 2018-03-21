@@ -18,27 +18,52 @@
         <EditText
             android:id="@+id/edt_height"
             android:layout_width="0dp"
-            android:textAlignment="center"
-            android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="height" />
+            android:hint="height"
+            android:inputType="number"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/edt_width"
-            android:inputType="number"
-            android:textAlignment="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="width" />
+            android:hint="width"
+            android:inputType="number"
+            android:textAlignment="center" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linear_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dimensions"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dimensions"
+            android:layout_weight="1"
+            android:text="Switch (Current matrix 1)" />
+
+        <Button
+            android:id="@+id/btn_multiply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn"
+            android:layout_weight="1"
+            android:text="Multiply" />
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_matrix"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/dimensions"></android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/linear_btn"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
