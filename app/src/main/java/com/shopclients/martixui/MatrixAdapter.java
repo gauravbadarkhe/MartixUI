@@ -41,11 +41,7 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
     @Override
     public void onBindViewHolder(MarticViewHolder holder, final int position) {
 
-        if (resultList != null) {
-            holder.edt_cell.setText(resultList.get(position));
-        } else {
-            holder.edt_cell.setText(position + "");
-        }
+
 
         holder.edt_cell.addTextChangedListener(new TextWatcher() {
             @Override
@@ -62,12 +58,19 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
             public void afterTextChanged(Editable editable) {
 
                 if (editable != null && editable.toString() != null && editable.toString().trim().length() > 0) {
-                    ((MainActivity) context).updateCellValue(Integer.valueOf(editable.toString()), position);
+                    ((MainActivity) context).updateCellValue(Integer.valueOf(editable.toString().trim()), position);
                 }
 
 
             }
         });
+
+
+        if (resultList != null) {
+            holder.edt_cell.setText(resultList.get(position));
+        } else {
+            holder.edt_cell.setText(position + "");
+        }
     }
 
     @Override

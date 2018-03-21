@@ -117,9 +117,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void multiplyMatrix(int[][] matrix1, int[][] matrix2) {
 
-
         int[][] restults = new int[height_1][width_2];
 
+        Log.d("", "height_1: " + height_1);
+        Log.d("", "width_1: " + width_1);
+        Log.d("", "height_2: " + height_2);
+        Log.d("", "height_2: " + height_2);
 
         int sum = 0;
         for (int i = 0; i < height_1; i++) {
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < height_1; i++) {
             for (int j = 0; j < width_2; j++) {
                 // c[i][j] += a[i][j] * b[j][i];
-                Log.d("", "multiplyMatrix: " + i+"," + j + "--->" + restults[i][j] + "");
+                Log.d("", "multiplyMatrix: " + i + "," + j + "--->" + restults[i][j] + "");
                 resultList.add(restults[i][j] + "");
             }
         }
@@ -154,17 +157,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateCellValue(int value, int position) {
 
-        if (isFirst) {
-            int x = position / width_1;
-            int y = position % width_1;
-            matrix1[x][y] = value;
-            Log.d("MainActivity", "updateCellValue for first matrix1: " + x + " , " + y);
-        } else {
-            int x = position / width_2;
-            int y = position % width_2;
-            matrix2[x][y] = value;
-            Log.d("MainActivity", "updateCellValue for second matrix1: " + x + " , " + y);
+        try{
+            if (isFirst) {
+                int x = position / width_1;
+                int y = position % width_1;
+                matrix1[x][y] = value;
+                Log.d("MainActivity", "updateCellValue for first matrix1: " + x + " , " + y);
+            } else {
+                int x = position / width_2;
+                int y = position % width_2;
+                matrix2[x][y] = value;
+                Log.d("MainActivity", "updateCellValue for second matrix1: " + x + " , " + y);
+            }
+        }catch (Exception e){
+         e.printStackTrace();
         }
+
+
+
+
 
     }
 
