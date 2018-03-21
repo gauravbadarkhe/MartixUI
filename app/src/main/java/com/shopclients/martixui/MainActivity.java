@@ -14,8 +14,8 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     int[][] matrix;
-    int height ;
-    int width ;
+    int height;
+    int width;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                 height = Integer.valueOf(edt_height.getText().toString());
-                 width = Integer.valueOf(edt_width.getText().toString());
+                height = Integer.valueOf(edt_height.getText().toString());
+                width = Integer.valueOf(edt_width.getText().toString());
 
 
                 matrix = new int[width][height];
 
                 recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, width));
-                recyclerView.setAdapter(new MatrixAdapter(height * width,MainActivity.this));
+                recyclerView.setAdapter(new MatrixAdapter(height * width, MainActivity.this));
 
                 Snackbar.make(view, "Matrix Created", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -53,9 +53,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void updateCellValue(int value,int position){
+    public void updateCellValue(int value, int position) {
 
-        Log.d("MainActivity", "updateCellValue: "+width%position);
+
+        int x = position / width;
+        int y = position % width;
+
+        matrix[x][y] = value;
+
+        Log.d("MainActivity", "updateCellValue: " + x+" , "+y);
     }
 
 }

@@ -20,7 +20,7 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
 
     public MatrixAdapter(int totalItems, Context context) {
         this.totalItems = totalItems;
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
 
     @Override
     public void onBindViewHolder(MarticViewHolder holder, final int position) {
-        holder.edt_cell.setText(position+"");
+        holder.edt_cell.setText(position + "");
         holder.edt_cell.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -47,8 +47,11 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
             @Override
             public void afterTextChanged(Editable editable) {
 
+                if (editable != null && editable.toString() != null && editable.toString().trim().length() > 0) {
+                    ((MainActivity) context).updateCellValue(Integer.valueOf(editable.toString()), position);
+                }
 
-                ((MainActivity)context).updateCellValue(Integer.valueOf(editable.toString()),position);
+
             }
         });
     }
