@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra("resultList")) {
             resultList = getIntent().getStringArrayListExtra("resultList");
-            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, width_2));
+            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, getIntent().getIntExtra("width", 2)));
             recyclerView.setAdapter(new MatrixAdapter(resultList, MainActivity.this));
 
             btn_multiply.setVisibility(View.GONE);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             edt_width.setVisibility(View.GONE);
             button.setVisibility(View.GONE);
             fab.setVisibility(View.GONE);
-        }else{
+        } else {
             btn_multiply.setVisibility(View.VISIBLE);
             edt_height.setVisibility(View.VISIBLE);
             edt_width.setVisibility(View.VISIBLE);
@@ -118,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
     private void multiplyMatrix(int[][] matrix1, int[][] matrix2) {
 
 
-        double[][] restults = new double[height_1][width_2];
+        int[][] restults = new int[height_1][width_2];
 
 
-        double sum = 0;
+        int sum = 0;
         for (int i = 0; i < height_1; i++) {
             for (int j = 0; j < width_2; j++) {
                 for (int k = 0; k < height_2; k++) {
@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < height_1; i++) {
             for (int j = 0; j < width_2; j++) {
                 // c[i][j] += a[i][j] * b[j][i];
+                Log.d("", "multiplyMatrix: " + i+"," + j + "--->" + restults[i][j] + "");
                 resultList.add(restults[i][j] + "");
             }
         }
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putStringArrayListExtra("resultList", (ArrayList<String>) resultList);
+        intent.putExtra("width", width_2);
         startActivity(intent);
 
     }
