@@ -7,10 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    int[][] matrix;
+    int height ;
+    int width ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +37,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                int height = Integer.valueOf(edt_height.getText().toString());
-                int width = Integer.valueOf(edt_width.getText().toString());
+                 height = Integer.valueOf(edt_height.getText().toString());
+                 width = Integer.valueOf(edt_width.getText().toString());
+
+
+                matrix = new int[width][height];
 
                 recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, width));
-                recyclerView.setAdapter(new MatrixAdapter(height * width));
+                recyclerView.setAdapter(new MatrixAdapter(height * width,MainActivity.this));
 
                 Snackbar.make(view, "Matrix Created", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -44,5 +52,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    public void updateCellValue(int value,int position){
+
+        Log.d("MainActivity", "updateCellValue: "+width%position);
+    }
 
 }
