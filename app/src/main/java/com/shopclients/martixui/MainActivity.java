@@ -115,6 +115,35 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public List<String> makeListCurrentFromMatrix() {
+        List<String> resultList = new ArrayList<>();
+
+        int[][] targetMatrix = null;
+        if (isFirst) {
+            targetMatrix = matrix1;
+            for (int i = 0; i < height_1; i++) {
+                for (int j = 0; j < width_1; j++) {
+                    // c[i][j] += a[i][j] * b[j][i];
+                    Log.d("", "multiplyMatrix: " + i + "," + j + "--->" + targetMatrix[i][j] + "");
+                    resultList.add(targetMatrix[i][j] + "");
+                }
+            }
+        } else {
+            targetMatrix = matrix2;
+            for (int i = 0; i < height_2; i++) {
+                for (int j = 0; j < width_2; j++) {
+                    // c[i][j] += a[i][j] * b[j][i];
+                    Log.d("", "multiplyMatrix: " + i + "," + j + "--->" + targetMatrix[i][j] + "");
+                    resultList.add(targetMatrix[i][j] + "");
+                }
+            }
+        }
+
+
+
+        return resultList;
+    }
+
     private void multiplyMatrix(int[][] matrix1, int[][] matrix2) {
 
         int[][] restults = new int[height_1][width_2];
@@ -157,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateCellValue(int value, int position) {
 
-        try{
+        try {
             if (isFirst) {
                 int x = position / width_1;
                 int y = position % width_1;
@@ -169,12 +198,9 @@ public class MainActivity extends AppCompatActivity {
                 matrix2[x][y] = value;
                 Log.d("MainActivity", "updateCellValue for second matrix1: " + x + " , " + y);
             }
-        }catch (Exception e){
-         e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-
-
 
 
     }

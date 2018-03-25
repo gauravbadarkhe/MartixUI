@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Gaurav Badarkhe on 3/22/18.
@@ -20,6 +22,7 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
     int totalItems;
     ArrayList<String> resultList;
     Context context;
+    Set<Integer> updatedPosition = new HashSet<>();
 
     public MatrixAdapter(int totalItems, Context context) {
         this.totalItems = totalItems;
@@ -69,7 +72,7 @@ public class MatrixAdapter extends RecyclerView.Adapter<MatrixAdapter.MarticView
         if (resultList != null) {
             holder.edt_cell.setText(resultList.get(position));
         } else {
-            holder.edt_cell.setText(position + "");
+            holder.edt_cell.setText(((MainActivity) context).makeListCurrentFromMatrix().get(position));
         }
     }
 
